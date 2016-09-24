@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
     <h1> Pagina 1</h1>
+
+    nombre Evento: <input type="text" id="nombre"><br> 
+    Direccion Evento: <input type="text" id="direccion"> <br>
+    <input type="button"  onclick="guardarDatosEvento()" value="Guardar Evento">
+
+    <div id="respuesta">
+        aqui viene la respuesra del servidor
+    </div>
+
+
+
 </body>
+
 </html>
+<script>
+    function guardarDatosEvento(){
+        debugger
+        var ajax=XMLHttpRequest();
+        ajax.onreadystatechange= function(){
+            if(this.status==200)
+            document.getElementById('respuesta').innerHTML=this.responseText;
+        }
+        var nombre=document.getElementById('nombre').value;
+        var direccion=document.getElementById('direccion').value
+        var url='/guardarEvento?nombre='.concat(,'&',concat(nombre,'&direccion=',direccion);
+        ajax.open('GET',url, true);
+        ajax.send();
+    }
+</script>
